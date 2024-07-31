@@ -11,5 +11,19 @@ namespace payback.Server.DB
         public DbSet<Loan> Loans { get; set; }
         public DbSet<Contract> Contracts { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Loan>(entity =>
+            {
+                entity.Property(e => e.Amount)
+                      .HasColumnType("decimal(18,2)");
+
+                entity.Property(e => e.Amount)
+                      .HasColumnType("decimal(18,2)");
+            });
+
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }
