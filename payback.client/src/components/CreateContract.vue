@@ -27,7 +27,7 @@
         },
         methods: {
             async createContract() {
-                const response = await fetch('https://localhost:7160/api/contracts', {
+                const response = await fetch('https://34.131.86.117/api/contracts', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

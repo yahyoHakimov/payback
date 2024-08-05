@@ -46,7 +46,7 @@
             async login() {
                 this.loading = true;
                 try {
-                    const response = await fetch('https://localhost:7160/api/User/login', {
+                    const response = await fetch('https://34.131.86.117/api/User/login', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',
