@@ -1,20 +1,22 @@
 <template>
-    <div>
-        <h2>Create Loan</h2>
+    <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold mb-6 text-gray-900">Create Loan</h2>
         <form @submit.prevent="createLoan">
-            <div>
-                <label for="borrower">Borrower</label>
-                <input v-model="borrower" id="borrower" />
+            <div class="mb-4">
+                <label for="borrower" class="block text-gray-700">Borrower</label>
+                <input v-model="borrower" id="borrower" type="text" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg w-full" />
             </div>
-            <div>
-                <label for="amount">Amount</label>
-                <input type="number" v-model="amount" id="amount" />
+            <div class="mb-4">
+                <label for="amount" class="block text-gray-700">Amount</label>
+                <input v-model="amount" id="amount" type="number" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg w-full" />
             </div>
-            <div>
-                <label for="dueDate">Due Date</label>
-                <input type="date" v-model="dueDate" id="dueDate" />
+            <div class="mb-4">
+                <label for="dueDate" class="block text-gray-700">Due Date</label>
+                <input v-model="dueDate" id="dueDate" type="date" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg w-full" />
             </div>
-            <button type="submit">Create Loan</button>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-700">
+                Create Loan
+            </button>
         </form>
     </div>
 </template>

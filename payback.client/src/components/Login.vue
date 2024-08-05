@@ -60,7 +60,8 @@
                     if (response.ok) {
                         this.message = 'User logged in successfully';
                         this.success = true;
-                        this.$emit('login-success');
+                        localStorage.setItem('user', JSON.stringify(await response.json()));
+                        this.$router.push('/create-loan');
                     } else {
                         this.message = 'Login failed. Please check your credentials.';
                         this.success = false;
@@ -89,7 +90,8 @@
                     console.log('Email: ' + profile.getEmail());
 
                     // Here you can handle the authentication and pass the token to your backend
-                    this.$emit('login-success');
+                    localStorage.setItem('user', JSON.stringify(profile));
+                    this.$router.push('/create-loan');
                 }).catch(error => {
                     console.log('Google sign-in error:', error);
                 }).finally(() => {
@@ -101,7 +103,6 @@
 </script>
 
 <style scoped>
-    /* Add spinner for loading state */
     .spinner-border {
         width: 1rem;
         height: 1rem;

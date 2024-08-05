@@ -11,7 +11,6 @@ builder.Services.AddCors(options =>
             .WithOrigins("http://localhost:5173")
             .AllowAnyHeader()
             .AllowAnyMethod()
-            .WithExposedHeaders("Content-Type") // Explicitly allow Content-Type
             .AllowCredentials());  // Include AllowCredentials if necessary
 });
 
@@ -34,6 +33,20 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.Use(async (context, next) =>
+{
+    if (context.Request.Method == "OPTIONS")
+    {
+        context.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:5173");
+        context.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        context.Response.StatusCode = 204;
+        return;
+    }
+
+    await next();
+});
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -45,7 +58,5 @@ app.UseCors("AllowSpecificOrigin"); // Ensure this is before UseAuthorization
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.MapFallbackToFile("/index.html");
 
 app.Run();

@@ -1,14 +1,7 @@
 <template>
     <div id="app" class="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-        <!--
-        <header class="text-center mb-10">
-               <h1 class="text-4xl font-bold text-gray-900">My Application</h1>
-           </header>
-
-        -->
-        <router-view></router-view>
+        <router-view />
     </div>
-
 </template>
 
 <script>
