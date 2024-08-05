@@ -1,17 +1,17 @@
 <template>
     <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-6 text-gray-900">Create Loan</h2>
+        <h2 class="text-2xl font-bold mb-6 text-gray-900">Qarz berish</h2>
         <form @submit.prevent="createLoan">
             <div class="mb-4">
-                <label for="borrower" class="block text-gray-700">Borrower</label>
+                <label for="borrower" class="block text-gray-700">Qarz oluvchi</label>
                 <input v-model="borrower" id="borrower" type="text" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg w-full" />
             </div>
             <div class="mb-4">
-                <label for="amount" class="block text-gray-700">Amount</label>
+                <label for="amount" class="block text-gray-700">Miqdor</label>
                 <input v-model="amount" id="amount" type="number" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg w-full" />
             </div>
             <div class="mb-4">
-                <label for="dueDate" class="block text-gray-700">Due Date</label>
+                <label for="dueDate" class="block text-gray-700">Qarz qaytarish vaqti</label>
                 <input v-model="dueDate" id="dueDate" type="date" class="mt-1 px-4 py-2 border border-gray-300 rounded-lg w-full" />
             </div>
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-700">
