@@ -1,0 +1,4 @@
+runtime: aspnetcore
+env: flex
+runtime_config:
+  dotnet_framework_version: 8

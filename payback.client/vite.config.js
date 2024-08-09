@@ -53,5 +53,11 @@ export default defineConfig({
             key: fs.readFileSync(keyFilePath),
             cert: fs.readFileSync(certFilePath),
         }
+    },
+    build: {
+        outDir: 'dist', // Ensure this is set
+        rollupOptions: {
+            // Any Rollup options here
+        }
     }
-})
+});

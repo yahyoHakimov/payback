@@ -39,7 +39,7 @@
             async register() {
                 this.loading = true;
                 try {
-                    const response = await fetch('https://34.131.86.117/api/User/register', {
+                    const response = await fetch('https://localhost:7160/api/User/register', {
                         method: 'POST',
                         headers: {
                             'Accept': 'application/json',

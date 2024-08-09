@@ -24,6 +24,8 @@ builder.Services.AddDbContext<PaybackContext>(options =>
 
 var app = builder.Build();
 
+app.Urls.Add("http://*:8080");
+
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
