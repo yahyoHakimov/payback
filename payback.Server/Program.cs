@@ -8,10 +8,11 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
         builder => builder
-            .WithOrigins("http://localhost:5173")
-            .AllowAnyHeader()
+            .WithOrigins("https://localhost:5173")  // Client application URL
             .AllowAnyMethod()
-            .AllowCredentials());  // Include AllowCredentials if necessary
+            .AllowAnyHeader()  // This should cover it, but let's be explicit if needed
+            .WithHeaders("Content-Type", "Authorization", "Accept")  // Explicitly allowing headers
+            .AllowCredentials());
 });
 
 builder.Services.AddControllers();
@@ -23,9 +24,8 @@ builder.Services.AddDbContext<PaybackContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
-
-app.Urls.Add("http://*:8080");
-
+app.UseCors("AllowSpecificOrigin");
+app.UseStaticFiles();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
@@ -35,27 +35,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.Use(async (context, next) =>
-{
-    if (context.Request.Method == "OPTIONS")
-    {
-        context.Response.Headers.Add("Access-Control-Allow-Origin", "http://localhost:5173");
-        context.Response.Headers.Add("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-        context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type, Authorization");
-        context.Response.StatusCode = 204;
-        return;
-    }
-
-    await next();
-});
-
-
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseCors("AllowSpecificOrigin"); // Ensure this is before UseAuthorization
 
 app.UseAuthorization();
 
