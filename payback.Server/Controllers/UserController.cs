@@ -27,7 +27,7 @@ namespace payback.Server.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<User>> Login([FromBody] User login)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(u => u.Username == login.Username && u.Password == login.Password);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == login.Email && u.Password == login.Password);
             if (user == null)
             {
                 return Unauthorized();

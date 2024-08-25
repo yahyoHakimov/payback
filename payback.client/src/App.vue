@@ -1,15 +1,29 @@
 <template>
-    <div id="app" class="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-        <router-view />
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <Sidebar v-if="isLoggedIn" class="w-1/5 bg-gray-200" />
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Top bar (optional) -->
+            <Home v-if="isLoggedIn" />
+
+            <!-- Main Content Area -->
+            <div id="app" class="flex-1 bg-gray-100">
+                <router-view />
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
-    import Register from './components/Register.vue';
-    import Login from './components/Login.vue';
-    import CreateLoan from './components/CreateLoan.vue';
-    import CreateContract from './components/CreateContract.vue';
-    import Notifications from './components/Notification.vue';
+    import Register from '@/components/Register.vue';
+    import Login from '@/components/Login.vue';
+    import CreateLoan from '@/components/CreateLoan.vue';
+    import CreateContract from '@/components/CreateContract.vue';
+    import Notifications from '@/components/Notification.vue';
+    import Home from '@/components/Home.vue';
+    import Sidebar from '@/components/Sidebar.vue';
 
     export default {
         name: 'App',
@@ -19,11 +33,13 @@
             CreateLoan,
             CreateContract,
             Notifications,
+            Home,
+            Sidebar
         },
         data() {
             return {
                 loggedIn: false,
-                showRegister: false, // initially show login form
+                showRegister: false,
                 googleAuth: null,
             };
         },
@@ -55,7 +71,6 @@
                     console.log('Image URL: ' + profile.getImageUrl());
                     console.log('Email: ' + profile.getEmail());
 
-                    // Here you can handle the authentication and pass the token to your backend
                     this.loggedIn = true;
                 }).catch(error => {
                     console.log('Google sign-in error:', error);
